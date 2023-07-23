@@ -1,0 +1,249 @@
+<html>
+
+<head>
+    <style>
+        body {
+            padding: 10px;
+            background-color: rgb(113, 84, 219);
+        }
+
+        table {
+            margin: 10px;
+            padding: 10px;
+            background-color: rgb(163, 143, 245);
+            color: #0c073f;
+            font-weight: 400;
+            font-size: 18px;
+            box-shadow: 0px 10px 5px rgb(161, 161, 161);
+        }
+
+        h1 {
+            margin: 5px;
+            padding: 30px;
+            background-color: rgb(163, 143, 245);
+            box-shadow: 0px 10px 5px rgb(161, 161, 161);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #1F51FF;
+            border-collapse: collapse;
+            margin: 20px 10px;
+        }
+
+        button {
+            border: 2px solid #1F51FF;
+            border-radius: 25px;
+            padding: 5 30px;
+            background-color: rgb(131, 107, 229);
+            box-shadow: 0px 10px 5px rgb(161, 161, 161);
+        }
+    </style>
+    <script>
+        var productinfo = [{
+            name: "Apple",
+            items: ["watch", "phone", "laptop"],
+            year: "2023-07-12",
+            country: "America",
+            remarks: "expensive"
+        },
+        {
+            name: "Samsung",
+            items: ["watch", "phone", "laptop"],
+            year: "2023-07-12",
+            country: "Korea",
+            remarks: "Splendid"
+        },
+        {
+            name: "Jio",
+            items: ["sim", "phone", "petrol"],
+            year: "2023-07-12",
+            country: "India",
+            remarks: "cheap"
+        },
+        {
+            name: "Boat",
+            items: ["watch", "earphone", "charger"],
+            year: "2023-07-12",
+            country: "India",
+            remarks: "awesome"
+        }];
+
+        //fetch
+        var getProductDetails = () => {
+            var data = '';
+            productinfo.map((product, index) => {
+                data += `<tr><td>${product.name}</td>`;
+                for (var i = 0; i < product.items.length; i++) {
+                    data += `<td>${product.items[i]}</td>`;
+                }
+                data += `
+                    <td>${product.year}</td>
+                    <td>${product.country}</td>
+                    <td>${product.remarks}</td>
+                    <td><button onclick='editUser(${index})'>Edit</button></td>
+                    <td><button onclick='deleteUser(${index})'>Delete</button></td>
+                </tr>`;
+            });
+            document.getElementById("container").innerHTML = data;
+        }
+
+        //save
+        var save = () => {
+            var newproduct = {
+                name: document.getElementById("pname").value,
+                items: [document.getElementById("pitem1").value,
+                document.getElementById("pitem2").value,
+                document.getElementById("pitem3").value],
+                year: document.getElementById("pyear").value,
+                country: document.getElementById("pcountry").value,
+                remarks: document.getElementById("premarks").value,
+            }
+            productinfo = productinfo.concat(newproduct);
+            getProductDetails();
+            let msg = document.getElementById("pname").value + "added successfully!";
+            document.getElementById("message").innerText = msg;
+            clearData();
+        }
+
+        //delete
+        function deleteUser(index) {
+            let name = productinfo[index].name;
+            let status = confirm(name + "will be deleted");
+            if (status == true) {
+                productinfo.splice(index, 1);
+                getProductDetails();
+                document.getElementById("message").innerText = name + " deleted!";
+            }
+        }
+
+        let userindex;
+        //edit
+        var editUser = (index) => {
+            userindex = index;
+            document.getElementById('pname').value = productinfo[index].name;
+            document.getElementById('pitem1').value = productinfo[index].items[0];
+            document.getElementById('pitem2').value = productinfo[index].items[1];
+            document.getElementById('pitem3').value = productinfo[index].items[2];
+            document.getElementById('pyear').value = productinfo[index].year;
+            document.getElementById('pcountry').value = productinfo[index].country;
+            document.getElementById('premarks').value = productinfo[index].remarks;
+
+            document.getElementById("saveOnly").style.display = "none";
+            document.getElementById("updateOnly").style.display = "inline";
+        }
+
+        //update
+        var update = () => {
+            var newproduct = {
+                name: document.getElementById("pname").value,
+                items: [document.getElementById('pitem1').value,
+                document.getElementById('pitem2').value,
+                document.getElementById('pitem3').value],
+                year: document.getElementById('pyear').value,
+                country: document.getElementById('pcountry').value,
+                remarks: document.getElementById('premarks').value,
+            }
+            productinfo[userindex]=newproduct;
+            getProductDetails();
+            let msg = document.getElementById("pname").value  + " updated successfully!";
+            document.getElementById("message").innerText=msg;
+            clearData();
+
+            document.getElementById("saveOnly").style.display = "inline";
+            document.getElementById("updateOnly").style.display= "none";
+        }
+        //clear data
+        var clearData = () => {
+            document.getElementById("pname").value = "";
+            document.getElementById("pitem1").value = "";
+            document.getElementById("pitem2").value = "";
+            document.getElementById("pitem3").value = "";
+            document.getElementById("pyear").value = "";
+            document.getElementById("pcountry").value = "";
+            document.getElementById("premarks").value = "";
+        }
+    </script>
+</head>
+
+<body onload="getProductDetails()">
+    <div class="body_main">
+        <header>
+            <h1 align="center">Nested Array fetch list</h1>
+            <p id="message" align="center"></p>
+        </header>
+        <div class="left_table">
+            <table align="left" cellpadding="10">
+                <tr>
+                    <th>Name</th>
+                    <td>
+                        <input type="text" id="pname">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Item 1</th>
+                    <td>
+                        <input type="text" id="pitem1">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Item 2</th>
+                    <td>
+                        <input type="text" id="pitem2">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Item 3</th>
+                    <td>
+                        <input type="text" id="pitem3">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Year</th>
+                    <td>
+                        <input type="date" id="pyear" min="1990-01-01" max="2023-12-31">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>
+                        <input type="text" id="pcountry">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Remarks</th>
+                    <td>
+                        <input type="text" id="premarks">
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <button onclick="save()" id="saveOnly">Save</button>
+                        <button onclick="update()" id="updateOnly" style="display: none;">Update</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <div class="right_table">
+            <table cellpadding="15" align="right">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Item 1</th>
+                        <th>Item 2</th>
+                        <th>Item 3</th>
+                        <th>Year</th>
+                        <th>Country</th>
+                        <th>Remarks</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="container"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

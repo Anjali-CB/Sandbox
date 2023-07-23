@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <script>
+        function city() {
+            var a = document.getElementById('cityname').value;
+            console.log(a);
+            alert(a);
+            document.getElementById("msg").innerText=a;
+            document.getElementById("length").innerText= "length of city words: " + a.length;
+        }
+    </script>
+</head>
+
+<body>
+    <p>Enter city name <input id='cityname' type="text" maxlength="25"></p>
+    <button onclick="city()">Calling city!</button>
+    <h2 id="msg"></h2>
+    <p id="length"></p>
+</body>
+
+</html>

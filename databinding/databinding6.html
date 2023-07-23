@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <style>
+            #container{
+                width: 80%;
+                margin: auto;
+                display: grid;
+                grid-template-columns: auto auto auto;
+            }
+            .myclass {
+            background-color: rgb(255, 188, 255);
+            color: #3b2424;
+            padding: 30px;
+            margin: 30px;
+            text-align: center;
+            font-size: 40;
+        }
+        </style>
+        <script>
+            var booknames = ["book1", 'book2', "book3"];
+            var getBook = () =>{
+                var data = '';  
+                booknames.map((bname, index)=>{
+                    data += "<div class='myclass'>" ;
+                    data += "<p>"+ bname + "<p>";
+                    data += `<button onclick='deleteBook(${index})'>Delete</button>`
+                    data += "</div>";
+                })
+                document.getElementById("container").innerHTML = data;
+                console.log(data)
+            }
+
+            var save = () =>{
+                var bookname = document.getElementById("newbook").value;
+                booknames.push(bookname);
+                //booknames.splice(2,1, bookname);
+                getBook();
+            }
+
+            var deleteBook = (bookindex) =>{
+                alert(bookindex);
+                booknames.splice(bookindex, 1);
+                getBook();
+            }
+        </script>
+    </head>
+    <body onload="getBook()">
+        <h1 align="center">Array List, add and delete data froman array</h1>
+        <p align="center">
+            Enter bookname
+            <input type="text" id="newbook">
+            <button onclick="save()">Save</button>
+        </p>
+        <div id="container"></div>
+    </body>
+</html>

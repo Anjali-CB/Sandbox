@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script>
+            var data="";
+            var printNumbers = ()=>{
+                for(var i=0; i<11; i++){
+                    data += "<p>" + i +"</p>"
+                }
+                document.getElementById("prntmsg").innerHTML= data;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Javascript printing number 1-10 using loops</h1>
+        <button onclick="printNumbers()">Print</button>
+        <div id="prntmsg"></div>
+    </body>
+</html>

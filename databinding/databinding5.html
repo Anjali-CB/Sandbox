@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <style>
+            #container{
+                display: grid;
+                grid-template-columns: auto auto;
+            }
+            p{
+                background-color: #954d4d;
+                color: #fff;
+                margin: 5px;
+                padding: 10px;
+            }
+        </style>
+        <script>
+             var data = '';
+             var printData = () =>{
+                document.getElementById("container").innerHTML=data;
+             }
+            
+            //using map
+            function city(){
+                city = ["A","B","C"];
+                city.map((cname, index)=>{
+                    data += "<p>" + cname + " : "+ index + "</p>";
+                })
+                printData();
+            }
+            //using for loop
+            var user = () =>{
+                let user = ["user1", "user2", "user3"];
+                for(var i=0; i<user.length; i++){
+                    data += "<p>" + user[i] + " index: "+ i +"</p>"
+                }
+                printData();
+            }
+            //using map! but arrow function
+            var book = () =>{
+                let book = ["book1", "book2", "book3"];
+                book.map((bname,index)=>{
+                    data += "<p>" + bname + "</p>";
+                })
+                printData();
+            }
+            //using forEach
+            var product= ()=>{
+                var product = ["pro1", "pro2", "pro3"];
+                product.forEach((pname, index)=>{
+                    data += "<p>" + pname + "</p>";
+                })
+                printData();
+            }
+        </script>
+    </head>
+    <body>
+      <button onclick="city()">CityName</button>
+      <button onclick="user()">UserName</button>
+      <button onclick="book()">BookName</button>
+      <button onclick="product()">productName</button>
+      <div id="container"></div>
+      <br>
+    </body>
+</html>

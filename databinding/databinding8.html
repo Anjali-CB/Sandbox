@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <style>
+        .myclass{
+            display: inline-block;
+            margin: 30px;
+            padding: 30px;
+            background-color: rgb(109, 0, 0);
+            vertical-align: top;
+            color: rgb(250, 250, 250);
+        }
+    </style>
+    <script>
+        var currYear = ("2022-03-25");
+
+        var productDetails = [{
+            name: "Apple",
+            items: ["watch", "phone", "laptop"],
+            year: currYear,
+            country: "America",
+            remarks: "expressive",
+            test: ["forEach", "forLoop", "map"],
+        },
+        {
+            name: "Orange",
+            items: ["beautiful", "Elegent", "gorgeous"],
+            year: 2013,
+            country: "Norway",
+            remarks: "Delicious",
+            test: ["forEach", "forLoop", "map"],
+        },
+        {
+            name: "Samsung",
+            items: ["watch", "phone", "laptop"],
+            year: 2005,
+            country: "Korea",
+            remarks: "Splendid",
+            test: ["forEach", "forLoop", "map"],
+        },
+        {
+            name: "Jio",
+            items: ["sim", "phone", "petrol"],
+            year: 2010,
+            country: "India",
+            remarks: "cheap",
+            test: ["forEach", "forLoop", "map"],
+        },
+        {
+            name: "Boat",
+            items: ["watch", "earphone", "charger"],
+            year: 2020,
+            country: "India",
+            remarks: "awesome",
+            test: ["forEach", "forLoop", "map"]
+        }]
+        function fetchProductDetails() {
+            var info = '';
+            productDetails.map((product, index) => {
+                info += `
+                <div class='myclass'>
+                <p>${product.name}</p>`
+                for (var i = 0; i < product.items.length; i++) {
+                    info += `<p>${i} : ${product.items[i]}</p>`;
+                }
+                info += `
+                <p>${product.year}</p>
+                <p>${product.country}</p>
+                <p>${product.remarks}</p>`
+                product.test.forEach((tester, m)=>{
+                    info += `<p>tester ${m} : ${tester}</p>`
+                })
+                info += `</div>`;
+            });
+            document.getElementById("container").innerHTML = info;
+        }
+    </script>
+</head>
+
+<body onload="fetchProductDetails()">
+    <h1>Nested array fetch list</h1>
+    <div id="container"></div>
+</body>
+
+</html>

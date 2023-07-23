@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <style>
+        #container {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+        }
+
+        p {
+            text-align: center;
+            font-size: 40px;
+            color: #ffff;
+            background-color: #bbbb;
+            margin: 30px;
+            padding: 30px;
+        }
+    </style>
+    <script>
+        var data = "";
+        var firstPrint = () => {
+            for (var i = 0; i < 11; i++) {
+                data += "<p>" + i + "</p>";
+            }
+            document.getElementById("container").innerHTML = data;
+        }
+        var secondPrint = () => {
+            for (var i = 11; i < 21; i++) {
+                data += "<p>" + i + " </p>";
+            }
+            document.getElementById("container").innerHTML = data;
+        }
+        var thirdPrint = () => {
+            for (var i = 1; i <= 20; i+=2) {
+                data += "<p>" + i + "</p>";
+            }
+            document.getElementById("container").innerHTML = data;
+        }
+        var forthPrint = () => {
+            for (var i = 2; i <= 20; i+=2) {
+                data += "<p>" + i + "</p>";
+            }
+            document.getElementById("container").innerHTML = data;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Printing number in js</h1>
+    <button onclick="firstPrint()">print 1-10</button>
+    <button onclick="secondPrint()">print 11-20</button>
+    <button onclick="thirdPrint()">print even number till 20</button>
+    <button onclick="forthPrint()">print odd numbers till 20</button>
+    <br>
+    <div id="container"></div>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <script>
+        var dreamlist = [
+            {
+                name: "Swaragini",
+                dream: "Doctor",
+                field: "medicine"
+            },
+            {
+                name: "Mohini",
+                dream: "Engineer",
+                field: "Electrical"
+            },
+            {
+                name: "Harini",
+                dream: "Scientist",
+                field: "Physics"
+            },
+        ];
+
+        var callList = () => {
+            var string = "";
+            dreamlist.map((value, index) => {
+                string += `<tr>
+                    <td>${value.name}</td>
+                    <td>${value.dream}</td>
+                    <td>${value.field}</td>`
+
+                string += `
+                <td><button onclick='edit("${index}")''>Edit</button></td>`
+
+                string += `
+                    <td><button onclick='deleteUser("${index}")'>Delete</button></td>`
+                string += `<tr>`
+            });
+            document.getElementById("container").innerHTML=string;
+        }
+        
+    var save = () =>{
+        var newdreamer = {
+            name: document.getElementById("name").value,
+            dream: document.getElementById("dream").value,
+            field: document.getElementById("field").value
+        }
+        dreamlist = dreamlist.concat(newdreamer);
+        callList();
+        let msg = document.getElementById("name").value + " saved!";
+        document.getElementById("message").innerText = msg;
+        clearTextbox();
+    } 
+    
+    var clearTextbox = () => {
+        document.getElementById("name").value = "";
+        document.getElementById("dream").value = "";
+        document.getElementById("field").value = "";
+    }
+
+    let dreamerindex;
+    var edit = (index) =>{
+        dreamerindex = index;
+        document.getElementById("name").value = dreamlist[index].name;
+        document.getElementById("dream").value = dreamlist[index].dream;
+        document.getElementById("field").value = dreamlist[index].field;
+        document.getElementById("save").style.display = "none";
+        document.getElementById("update").style.display = "inline";
+    }
+
+    var deleteUser = (index) =>{
+        let msg = dreamlist[index].name;
+        let status = confirm("Do you want to remove the row?");
+        if(status==true){
+            dreamlist.splice(index,1);
+            callList();
+            document.getElementById("message").innerText = msg + " deleted";
+        }
+    }
+
+    var update = () =>{
+        var newdreamer = {
+            name: document.getElementById("name").value,
+            dream: document.getElementById("dream").value,
+            field: document.getElementById("field").value
+        }
+
+        dreamlist[dreamerindex] = newdreamer;
+        callList();
+        let msg = document.getElementById("name").value + " updated";
+        document.getElementById("message").innerText = msg;
+        clearTextbox();
+
+        document.getElementById("save").style.display="inline";
+        document.getElementById("update").style.display="none";
+    }
+    </script>
+</head>
+
+<body onload="callList()">
+    <h1 align="center">simple nested Array Fetch list 2 with no style</h1>
+    <p id="message" align="center"></p>
+
+    <table align="left">
+        <tr>
+            <th>Name</th>
+            <td>
+                <input type="text" id="name">
+            </td>
+        </tr>
+        <tr>
+            <th>Dream</th>
+            <td>
+                <input type="text" id="dream">
+            </td>
+        </tr>
+        <tr>
+            <th>Field</th>
+            <td>
+                <input type="text" id="field">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <button id="save" onclick="save()">Save</button>
+                    <button id="update" style="display: none;" onclick="update()">Update</button>
+            </th>
+        </tr>
+    </table>
+
+        <table cellpadding="15" align="right">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Dream</th>
+                <th>Field</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="container">
+
+        </tbody>
+    </table>
+</body>
+
+</html>

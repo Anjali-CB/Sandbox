@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <style>
+             #container{
+                width: 20%;
+                border: 3px solid black;
+                background-color: rgb(14, 8, 94);
+                color: white;
+                text-align: center;
+             }
+        </style>
+        <script>
+            var getUser = () =>{
+                var userinfo = {
+                    name: "Ganesh",
+                    age: 57,
+                    mobile: 7892926267,
+                    gender: "male",
+                    city: 'Bnegaluru',
+                    brand: "Dell",
+                    mbti : "ENTJ",
+                }
+
+                var data = `<h2>${userinfo.name}</h2>
+                <p>${userinfo.age}</p>
+                <p>${userinfo.mobile}</p>
+                <p>${userinfo.gender}</p>
+                <p>${userinfo.city}</p>
+                <p>${userinfo.brand}</p>
+                <p>${userinfo.mbti}</p>`;
+
+                document.getElementById('container').innerHTML = data;
+            }
+        </script>
+    </head>
+    <body onload="getUser()">
+        <h1>Object and array of object in JS</h1>
+        <div id="container"></div>
+    </body>
+</html>

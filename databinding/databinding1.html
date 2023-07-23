@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <script>
+            var data = "<h1>Welcome trial!</h1>";
+            var one = ()=> {
+                document.getElementById("message").innerText=data;
+            }
+            var two = ()=>{
+                document.getElementById("message").innerHTML = data;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>differnce if innertext and innerHTML</h1>
+        <button onclick="one()">innerTEXT</button>
+        <button onclick="two()">innerHTML</button>
+        <div id="message"></div>
+    </body>
+</html>
+
